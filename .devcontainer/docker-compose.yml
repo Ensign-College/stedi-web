@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  devcontainer:
+    image: mcr.microsoft.com/devcontainers/java:0-17
+    volumes:
+      - ../..:/workspaces:cached
+    network_mode: service:redis
+    command: sleep infinity
+
+  redis:
+    image: redis/redis-stack-server:latest
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+volumes:
+  redis-data:
