@@ -126,7 +126,7 @@ public class WebAppRunner {
             Gson gson = new Gson();
             TextMessage textMessage = gson.fromJson(req.body(), TextMessage.class);//
             Optional<User> userOptional = userFilter(req,res);
-            if (!userOptional.isEmpty() && userOptional.get().getPhone().equals(SendText.getFormattedPhone(textMessage.getPhoneNumber()))) {
+            if (!userOptional.isEmpty() && userOptional.get().getPhone().equals(PhoneUtil.getFormattedPhone(textMessage.getPhoneNumber()))) {
                 SendText.send(textMessage.getPhoneNumber(), textMessage.getMessage());
                 res.status(200);
                 return "Text Sent";
@@ -221,7 +221,7 @@ public class WebAppRunner {
                 System.out.println("*** Error Finding Customer: "+e.getMessage());
                 return null;
             }
-            if(optionalUser.isPresent() && optionalUser.get().getPhone().equals( SendText.getFormattedPhone(phone))){
+            if(optionalUser.isPresent() && optionalUser.get().getPhone().equals( PhoneUtil.getFormattedPhone(phone))){
                 return gson.toJson(CustomerService.getCustomerByPhone(phone));
             }
             return  null;
@@ -319,7 +319,7 @@ public class WebAppRunner {
         int randomNum = ThreadLocalRandom.current().nextInt(1111, 10000);
         User user=null;
         try {
-            phoneNumber = SendText.getFormattedPhone(phoneNumber);
+            phoneNumber = PhoneUtil.getFormattedPhone(phoneNumber);
             user = FindUser.getUserByPhone(phoneNumber);
             if (user!=null){
                 Long expiration = new Date().getTime()+100l * 365l * 24l *60l * 60l *1000l;//100 years

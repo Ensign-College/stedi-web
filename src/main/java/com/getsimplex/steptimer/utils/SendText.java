@@ -25,7 +25,7 @@ public class SendText {
 
     public static void send(String destinationPhone, String text) throws Exception{
 
-        String formattedPhone = getFormattedPhone(destinationPhone);
+        String formattedPhone = PhoneUtil.getFormattedPhone(destinationPhone);
         PhoneNumber destination = new PhoneNumber(formattedPhone);
         PhoneNumber origin = new PhoneNumber(TWILIO_PHONE);
 
@@ -35,12 +35,6 @@ public class SendText {
 
     }
 
-    public static String getFormattedPhone(String inputPhone) throws Exception{
-        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
-        Phonenumber.PhoneNumber phoneNumber = phoneUtil.parse(inputPhone, "US");
-        String formattedPhone = phoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
-        formattedPhone = formattedPhone.replace(" ","");
-        return formattedPhone;
-    }
+
 
 }

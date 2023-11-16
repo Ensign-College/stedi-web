@@ -43,7 +43,7 @@ public class CreateNewUser {
         String password = createUser.getPassword();
         String verifyPassword = createUser.getVerifyPassword();
         String email = createUser.getEmail();
-        String phone = SendText.getFormattedPhone(createUser.getPhone());
+        String phone = PhoneUtil.getFormattedPhone(createUser.getPhone());
         String standardizedPhoneDigitsOnly= phone.replaceAll("[^0-9]","");
         String bday = createUser.getBirthDate();
         String deviceId = createUser.getDeviceNickName();
