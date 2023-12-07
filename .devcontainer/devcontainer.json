@@ -19,7 +19,7 @@
   "customizations": {
     // Configure properties specific to VS Code.
     "vscode": {
-      "settings": {},
+      "settings": {"java.server.launchMode": "Standard"},
       "extensions": [
         "streetsidesoftware.code-spell-checker",
         "redhat.java"
